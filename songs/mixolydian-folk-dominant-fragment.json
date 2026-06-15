@@ -1,0 +1,58 @@
+{
+  "title": "Mixolydian — folk dominant (G Mixolydian)",
+  "group": "Modes",
+  "scale": "mixolydian",
+  "root": "G",
+  "bpm": 100,
+  "clef": "treble",
+  "timeSig": {
+    "num": 4,
+    "den": 4
+  },
+  "tracks": [
+    {
+      "instrument": "guitar",
+      "strumPattern": "dudu",
+      "notes": [
+        { "letter": "D", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "B", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "B", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 5, "value": 2, "acc": 0 },
+        { "letter": "D", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "B", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 2, "acc": 0 },
+        { "letter": "D", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 5, "value": 4, "acc": 0 },
+        { "letter": "B", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 2, "acc": 0 }
+      ]
+    },
+    {
+      "instrument": "bass",
+      "notes": [
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 },
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 },
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "D", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 }
+      ]
+    }
+  ]
+}

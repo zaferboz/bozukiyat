@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BoZ — Music Theory Learner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap&subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-bar">
+      <div class="logo-boz">
+        <img src="logo/boz_muzik.png" alt="BoZ Müzik" class="logo-img" width="240" height="72">
+      </div>
+      <div class="header-controls">
+        <div class="lang-select-wrap">
+          <select id="langSelect" class="lang-select" aria-label="Language">
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
+        <div class="midi-wrap">
+          <button type="button" id="midiConnectBtn" class="midi-btn" data-i18n="midi.connect">🎹 MIDI</button>
+          <select id="midiInputSelect" class="midi-select" hidden disabled aria-label="MIDI input"></select>
+          <span id="midiStatus" class="midi-status"></span>
+        </div>
+      </div>
+    </div>
+    <p class="subtitle" data-i18n="app.subtitle">Interactive Music Theory Learner</p>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="piano" data-i18n="tab.piano">🎹 Piano</button>
+      <button class="tab-btn" data-tab="guitar" data-i18n="tab.guitar">🎸 Guitar</button>
+      <button class="tab-btn" data-tab="guitarchords" data-i18n="tab.guitarchords">🪕 Guitar Chords</button>
+      <button class="tab-btn" data-tab="scales" data-i18n="tab.scales">📊 Scales</button>
+      <button class="tab-btn" data-tab="chords" data-i18n="tab.chords">🎶 Chords</button>
+      <button class="tab-btn" data-tab="sheetmusic" data-i18n="tab.training">🎓 Training</button>
+      <button class="tab-btn" data-tab="composer" data-i18n="tab.composer">✏️ Compose</button>
+      <button class="tab-btn" data-tab="metronome" data-i18n="tab.metronome">⏱ Metronome</button>
+      <button class="tab-btn" data-tab="tuner" data-i18n="tab.tuner">🎤 Tuner</button>
+    </nav>
+  </header>
+
+  <div class="app-layout">
+  <main class="app-main">
+    <section id="piano" class="tab-panel active">
+      <h2 data-i18n="piano.title">🎹 Piano Keyboard</h2>
+      <div class="piano-container">
+        <div class="piano-wrapper">
+          <div class="piano-keyboard" id="pianoKeyboard"></div>
+        </div>
+        <div class="piano-info">
+          <p class="current-note" data-i18n="piano.hint1">Click a key or press keys to play</p>
+          <p data-i18n="piano.hint2">Computer keys A–K, or connect a MIDI keyboard via the header</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="guitar" class="tab-panel">
+      <h2 data-i18n="guitar.title">🎸 Guitar Fretboard</h2>
+      <div class="guitar-container">
+        <div class="string-selector">
+          <label><span data-i18n="guitar.string">String:</span>
+            <select id="guitarStringSelect">
+              <option value="all" data-i18n="guitar.allStrings">All Strings</option>
+              <option value="0" data-i18n="guitar.str1">1st (High E)</option>
+              <option value="1" data-i18n="guitar.str2">2nd (B)</option>
+              <option value="2" data-i18n="guitar.str3">3rd (G)</option>
+              <option value="3" data-i18n="guitar.str4">4th (D)</option>
+              <option value="4" data-i18n="guitar.str5">5th (A)</option>
+              <option value="5" data-i18n="guitar.str6">6th (Low E)</option>
+            </select>
+          </label>
+        </div>
+        <div class="fretboard" id="fretboard"></div>
+        <div class="guitar-info">
+          <p class="current-note" data-i18n="guitar.hint1">Click a fret to hear the note</p>
+          <p data-i18n="guitar.hint2">Standard tuning (E A D G B E)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="scales" class="tab-panel">
+      <h2 data-i18n="scales.title">📊 Major & Minor Scales</h2>
+      <div class="scales-controls">
+        <div class="control-group">
+          <label data-i18n="label.rootNote">Root Note:</label>
+          <select id="rootNote">
+            <option value="C">C</option>
+            <option value="C#">C♯ / D♭</option>
+            <option value="D">D</option>
+            <option value="D#">D♯ / E♭</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F♯ / G♭</option>
+            <option value="G">G</option>
+            <option value="G#">G♯ / A♭</option>
+            <option value="A">A</option>
+            <option value="A#">A♯ / B♭</option>
+            <option value="B">B</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label data-i18n="label.scaleType">Scale Type:</label>
+          <select id="scaleType">
+            <optgroup data-i18n-label="scale.grp.majorMinor" label="Major / Minor">
+              <option value="major">Major (Ionian)</option>
+              <option value="natural-minor">Natural Minor (Aeolian)</option>
+              <option value="harmonic-minor">Harmonic Minor</option>
+              <option value="melodic-minor">Melodic Minor</option>
+            </optgroup>
+            <optgroup data-i18n-label="scale.grp.modes" label="Modes">
+              <option value="dorian">Dorian</option>
+              <option value="phrygian">Phrygian</option>
+              <option value="lydian">Lydian</option>
+              <option value="mixolydian">Mixolydian</option>
+              <option value="locrian">Locrian</option>
+            </optgroup>
+            <optgroup data-i18n-label="scale.grp.pentBlues" label="Pentatonic / Blues">
+              <option value="major-pentatonic">Major Pentatonic</option>
+              <option value="minor-pentatonic">Minor Pentatonic</option>
+              <option value="blues">Blues</option>
+            </optgroup>
+            <optgroup data-i18n-label="scale.grp.makam" label="Turkish Makams">
+              <option value="rast">Rast</option>
+              <option value="nihavent">Nihavent</option>
+              <option value="kurdi">Kürdi</option>
+              <option value="hicaz">Hicaz</option>
+              <option value="ussak">Uşşak</option>
+              <option value="huseyni">Hüseyni</option>
+              <option value="segah">Segah</option>
+              <option value="saba">Saba</option>
+              <option value="huzzam">Hüzzam</option>
+              <option value="mahur">Mahur</option>
+              <option value="buselik">Buselik</option>
+              <option value="acemasiran">Acemasiran</option>
+              <option value="karcigar">Karcıgar</option>
+            </optgroup>
+            <optgroup data-i18n-label="scale.grp.other" label="Other">
+              <option value="whole-tone">Whole Tone</option>
+              <option value="chromatic">Chromatic</option>
+            </optgroup>
+          </select>
+        </div>
+        <button class="play-btn" id="playScaleBtn" data-i18n="scales.playUp">▶ Play Scale</button>
+        <button class="play-btn" id="playScaleDownBtn" data-i18n="scales.playDown">◀ Play Descending</button>
+      </div>
+      <div class="scale-display">
+        <p class="scale-title" id="scaleTitle"></p>
+        <p class="scale-description" id="scaleDescription"></p>
+        <div class="piano-keys-mini" id="scalePianoKeys"></div>
+        <div class="scale-notes" id="scaleNotesList"></div>
+        <div class="scale-degrees" id="scaleDegrees"></div>
+        <p class="step-pattern-label" data-i18n="scales.stepPattern">Step pattern (F = Full / whole step, H = Half step):</p>
+        <p class="step-pattern" id="scalePattern"></p>
+        <div class="step-ruler-wrap">
+          <div class="step-ruler" id="scaleRuler"></div>
+        </div>
+        <div class="intervals" id="scaleIntervals"></div>
+        <div class="harmonized-chords" id="harmonizedChords"></div>
+        <div class="scale-examples" id="scaleExamples">
+          <h3 class="sub-heading" data-i18n="scales.exampleSongs">Example songs</h3>
+          <p class="scale-description" data-i18n="scales.exampleSongsHint">Simplified melodies in this scale — load into Compose to edit or play.</p>
+          <div class="scale-examples-list" id="scaleExamplesList"></div>
+          <p class="scale-description scale-examples-empty" id="scaleExamplesEmpty" hidden data-i18n="scales.noExamples">No built-in examples for this scale yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="guitarchords" class="tab-panel">
+      <h2 data-i18n="gc.title">🪕 Guitar Chords</h2>
+      <div class="scales-controls">
+        <div class="control-group">
+          <label data-i18n="label.quality">Quality:</label>
+          <div class="toggle-group" id="gcBaseToggle">
+            <button class="toggle-btn active" data-base="major" data-i18n="gc.major">Major</button>
+            <button class="toggle-btn" data-base="minor" data-i18n="gc.minor">Minor</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <label data-i18n="label.chordType">Chord Type:</label>
+          <select id="gcModifier">
+            <option value="triad" data-i18n="gc.mod.triad">Triad (basic)</option>
+            <option value="5" data-i18n="gc.mod.5">5 (Power)</option>
+            <option value="6" data-i18n="gc.mod.6">6</option>
+            <option value="7" data-i18n="gc.mod.7">7</option>
+            <option value="maj7" data-i18n="gc.mod.maj7">maj7</option>
+            <option value="9" data-i18n="gc.mod.9">9</option>
+            <option value="add9" data-i18n="gc.mod.add9">add9</option>
+            <option value="sus2" data-i18n="gc.mod.sus2">sus2</option>
+            <option value="sus4" data-i18n="gc.mod.sus4">sus4</option>
+            <option value="dim" data-i18n="gc.mod.dim">dim</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label data-i18n="label.rootString">Root String:</label>
+          <select id="gcRootString"></select>
+        </div>
+        <div class="control-group">
+          <label data-i18n="label.guitarTone">Guitar / Tone:</label>
+          <select id="gcGuitarType">
+            <option value="folk" data-i18n="gc.guitar.folk">Folk (steel acoustic)</option>
+            <option value="steel" data-i18n="gc.guitar.steel">Steel (bright)</option>
+            <option value="classic" data-i18n="gc.guitar.classic">Classic (nylon)</option>
+            <option value="nylon" data-i18n="gc.guitar.nylon">Nylon (soft)</option>
+            <option value="rock" data-i18n="gc.guitar.rock">Rock (electric)</option>
+          </select>
+        </div>
+      </div>
+      <p class="gc-orientation-note" data-i18n-html="gc.orient">Strings shown top → bottom: <strong>6th (low E, thickest)</strong> at the top, down to <strong>1st (high E)</strong>. The grid shows this chord type for all 12 roots.</p>
+      <div class="gc-grid" id="gcGrid"></div>
+      <div class="gc-detail" id="gcDetail"></div>
+
+      <h3 class="gc-section-title" data-i18n="gc.shiftTitle">🎚 Shift this shape along the neck</h3>
+      <p class="scale-description" data-i18n="gc.shiftDesc">The movable shape keeps the same finger pattern — drag it up the neck and the chord root changes.</p>
+      <div class="gc-neck-controls">
+        <label><span data-i18n="gc.position">Position (fret):</span> <strong id="gcFretValue">0</strong></label>
+        <input type="range" id="gcFretSlider" min="0" max="12" value="0" class="bpm-slider">
+        <button class="play-btn" id="gcNeckPlay" data-i18n="gc.strum">🎸 Strum</button>
+      </div>
+      <div class="gc-neck-name" id="gcNeckName"></div>
+      <div class="gc-neck-wrap"><div id="gcNeck"></div></div>
+    </section>
+
+    <section id="chords" class="tab-panel">
+      <h2 data-i18n="chords.title">🎶 Chords</h2>
+      <div class="scales-controls">
+        <div class="control-group">
+          <label data-i18n="label.rootNote">Root Note:</label>
+          <select id="chordRoot">
+            <option value="C">C</option>
+            <option value="C#">C♯ / D♭</option>
+            <option value="D">D</option>
+            <option value="D#">D♯ / E♭</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F♯ / G♭</option>
+            <option value="G">G</option>
+            <option value="G#">G♯ / A♭</option>
+            <option value="A">A</option>
+            <option value="A#">A♯ / B♭</option>
+            <option value="B">B</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label data-i18n="label.chordType">Chord Type:</label>
+          <select id="chordType"></select>
+        </div>
+        <button class="play-btn" id="playChordBtn" data-i18n="chords.play">▶ Play Chord</button>
+        <button class="play-btn" id="arpChordBtn" data-i18n="chords.arp">🎵 Arpeggiate</button>
+      </div>
+      <div class="scale-display">
+        <p class="scale-title" id="chordTitle"></p>
+        <p class="scale-description" id="chordDescription"></p>
+        <div class="piano-keys-mini" id="chordPianoKeys"></div>
+        <div class="scale-notes" id="chordNotesList"></div>
+        <div class="scale-degrees" id="chordFormula"></div>
+      </div>
+    </section>
+
+    <section id="sheetmusic" class="tab-panel">
+      <h2 data-i18n="training.title">🎓 Music Training</h2>
+      <div class="training-controls sheetmusic-controls">
+        <div class="control-group">
+          <label data-i18n="label.trainingProgram">Program:</label>
+          <select id="trainingProgram">
+            <optgroup data-i18n-label="training.notesGroup" label="Notes on staff">
+              <option value="notes-learn" data-i18n="sheet.learn">Learn</option>
+              <option value="notes-quiz" data-i18n="sheet.quiz">Practice</option>
+            </optgroup>
+            <optgroup data-i18n-label="training.earGroup" label="Ear training">
+              <option value="ear-interval" data-i18n="ear.interval">Interval Recognition</option>
+              <option value="ear-chord" data-i18n="ear.chord">Chord Quality</option>
+              <option value="ear-note-name" data-i18n="ear.noteName">Note Identification</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div id="trainingNotesPanel" class="training-panel">
+        <div class="sheetmusic-controls">
+          <div class="control-group">
+            <label data-i18n="label.clef">Clef:</label>
+            <select id="clefSelect">
+              <option value="treble" data-i18n="clef.treble">Treble</option>
+              <option value="bass" data-i18n="clef.bass">Bass</option>
+            </select>
+          </div>
+          <button class="play-btn" id="sheetPlayNote" data-i18n="sheet.playNote">🔊 Play Note</button>
+          <button class="play-btn" id="newNoteBtn" data-i18n="sheet.newNote">🎲 New Note</button>
+        </div>
+        <div class="staff-container">
+          <canvas id="staffCanvas" width="800" height="300"></canvas>
+          <div class="quiz-answer" id="quizAnswer"></div>
+          <div class="sheet-letter-pad" id="sheetLetterPad">
+            <button type="button" class="sheet-letter-btn" data-letter="C">C</button>
+            <button type="button" class="sheet-letter-btn" data-letter="D">D</button>
+            <button type="button" class="sheet-letter-btn" data-letter="E">E</button>
+            <button type="button" class="sheet-letter-btn" data-letter="F">F</button>
+            <button type="button" class="sheet-letter-btn" data-letter="G">G</button>
+            <button type="button" class="sheet-letter-btn" data-letter="A">A</button>
+            <button type="button" class="sheet-letter-btn" data-letter="B">B</button>
+          </div>
+        </div>
+        <div class="quiz-score" id="quizScore" style="display:none;">
+          <span data-i18n="sheet.score">Score:</span> <span id="scoreValue">0</span> / <span id="totalQuestions">0</span>
+          <button class="reset-btn" id="resetScoreBtn" data-i18n="sheet.reset">Reset</button>
+        </div>
+      </div>
+
+      <div id="trainingEarPanel" class="training-panel" hidden>
+        <div class="ear-training-controls">
+          <button class="play-btn" id="listenBtn" data-i18n="ear.play">🔊 Play</button>
+          <button class="play-btn" id="replayBtn" data-i18n="ear.replay">🔁 Replay</button>
+        </div>
+        <div class="ear-answer-buttons" id="earAnswerButtons"></div>
+        <div class="ear-feedback" id="earFeedback"></div>
+      </div>
+    </section>
+
+    <section id="composer" class="tab-panel">
+      <div class="composer-main">
+          <div class="composer-main-head">
+            <h2 data-i18n="compose.title">✏️ Compose &amp; Play</h2>
+            <div class="composer-transport">
+              <button class="play-btn" id="compPlay" data-i18n="compose.playAll">▶ Play All</button>
+              <button class="play-btn" id="compStop" data-i18n="compose.stop">⏹ Stop</button>
+              <button class="play-btn" id="compRest" data-i18n="compose.rest">𝄽 Rest</button>
+              <button class="play-btn" id="compUndo" data-i18n="compose.undo">⌫ Delete Last</button>
+              <button class="reset-btn" id="compClear" data-i18n="compose.clear">🗑 Clear Track</button>
+            </div>
+          </div>
+
+          <div class="tracks-panel composer-compact">
+            <div class="tracks-header">
+              <span data-i18n="compose.tracksHeader">Tracks — click to edit · all staves below</span>
+              <div class="tracks-header-actions">
+                <button class="play-btn" id="compAddTrack" data-i18n="compose.addTrack">＋ Add Track</button>
+                <button class="play-btn comp-remove-track" id="compRemoveTrack" data-i18n="compose.removeTrack">− Remove Track</button>
+              </div>
+            </div>
+            <div id="compTracks"></div>
+          </div>
+
+          <p class="scale-description comp-hint" id="compHint"></p>
+
+          <div class="staff-container composer-staff-wrap">
+            <canvas id="composerCanvas" width="900" height="240"></canvas>
+          </div>
+      </div>
+    </section>
+
+    <section id="metronome" class="tab-panel">
+      <h2 data-i18n="metro.title">⏱ Metronome</h2>
+      <div class="metronome-container">
+        <div class="metronome-display">
+          <div class="bpm-value"><span id="bpmValue">120</span><span class="bpm-unit" data-i18n="metro.bpm">BPM</span></div>
+          <div class="tempo-name" id="tempoName">Allegro</div>
+        </div>
+
+        <div class="beat-indicators" id="beatIndicators"></div>
+
+        <div class="metronome-controls">
+          <button class="tempo-btn" id="bpmDown10">−10</button>
+          <button class="tempo-btn" id="bpmDown">−1</button>
+          <input type="range" id="bpmSlider" min="30" max="240" value="120" class="bpm-slider">
+          <button class="tempo-btn" id="bpmUp">+1</button>
+          <button class="tempo-btn" id="bpmUp10">+10</button>
+        </div>
+
+        <div class="metronome-options">
+          <div class="control-group">
+            <label data-i18n="label.timeSig">Time Signature:</label>
+            <select id="timeSignature">
+              <option value="2">2 / 4</option>
+              <option value="3">3 / 4</option>
+              <option value="4" selected>4 / 4</option>
+              <option value="5">5 / 4</option>
+              <option value="6">6 / 8</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.subdivision">Subdivision:</label>
+            <select id="subdivision">
+              <option value="1" data-i18n="sub.quarter">Quarter notes</option>
+              <option value="2" data-i18n="sub.eighth">Eighth notes</option>
+              <option value="3" data-i18n="sub.triplet">Triplets</option>
+              <option value="4" data-i18n="sub.sixteenth">Sixteenth notes</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.volume">Volume:</label>
+            <input type="range" id="metroVolume" min="0" max="100" value="60" class="bpm-slider">
+          </div>
+        </div>
+
+        <div class="metronome-actions">
+          <button class="play-btn metro-start" id="metroToggle" data-i18n="metro.start">▶ Start</button>
+          <button class="play-btn" id="tapTempo" data-i18n="metro.tap">👆 Tap Tempo</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tuner" class="tab-panel">
+      <h2 data-i18n="tuner.title">🎤 Instrument Tuner</h2>
+      <p class="scale-description" data-i18n="tuner.hint">Allow microphone access, pluck a string, and match the needle to the center.</p>
+
+      <div class="tuner-container">
+        <div class="tuner-controls">
+          <div class="control-group">
+            <label data-i18n="tuner.instrument">Instrument:</label>
+            <select id="tunerInstrument"></select>
+          </div>
+          <label class="tuner-auto-label">
+            <input type="checkbox" id="tunerAutoString" checked>
+            <span data-i18n="tuner.autoString">Auto-detect string</span>
+          </label>
+        </div>
+
+        <div class="tuner-display">
+          <p class="tuner-target" id="tunerTarget">—</p>
+          <div class="tuner-note" id="tunerNote">—</div>
+          <div class="tuner-detected-freq" id="tunerFreq">— Hz</div>
+
+          <div class="tuner-gauge-wrap">
+            <div class="tuner-gauge" id="tunerGauge">
+              <div class="tuner-gauge-scale">
+                <span>♭</span><span>0</span><span>♯</span>
+              </div>
+              <div class="tuner-gauge-arc"></div>
+              <div class="tuner-needle" id="tunerNeedle"></div>
+            </div>
+            <div class="tuner-cents" id="tunerCents">—</div>
+            <div class="tuner-status" id="tunerStatus" data-i18n="tuner.silent">No signal</div>
+          </div>
+        </div>
+
+        <div class="tuner-strings" id="tunerStrings"></div>
+
+        <div class="tuner-actions">
+          <button type="button" class="play-btn" id="tunerToggle" data-i18n="tuner.startMic">🎤 Start Microphone</button>
+          <button type="button" class="play-btn" id="tunerPlayRef" data-i18n="tuner.playRef">🔊 Play Reference</button>
+        </div>
+        <p class="tuner-mic-status" id="tunerMicStatus"></p>
+      </div>
+    </section>
+  </main>
+
+  <aside class="composer-settings collapsed" id="compSettingsPanel" aria-label="App settings">
+    <button type="button" class="composer-settings-tab" id="compSettingsToggle" aria-expanded="false" aria-controls="compSettingsBody">
+      <span class="composer-settings-tab-icon" aria-hidden="true">⚙</span>
+      <span class="composer-settings-tab-label" data-i18n="compose.settings">Settings</span>
+    </button>
+    <div class="composer-settings-resizer" id="compSettingsResizer" role="separator" aria-orientation="vertical" title="Drag to resize"></div>
+    <div class="composer-settings-inner" id="compSettingsBody">
+      <h3 class="composer-settings-title" data-i18n="compose.settings">Settings</h3>
+
+      <details class="composer-settings-group" open>
+        <summary data-i18n="compose.settingsSound">Sound</summary>
+        <div class="sheetmusic-controls composer-compact composer-settings-controls">
+          <div class="control-group">
+            <label data-i18n="compose.globalInstrument">Instrument:</label>
+            <select id="globalInstrument"></select>
+          </div>
+          <div class="control-group">
+            <label><span data-i18n="label.volume">Volume:</span> <strong id="globalVolumeVal">85</strong></label>
+            <input type="range" id="globalVolume" min="0" max="100" value="85" class="bpm-slider">
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.keyOctave">Key Octave:</label>
+            <select id="compOctave" title="Key octave for A–K keys">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <p class="scale-description composer-key-octave-hint" data-i18n="compose.keyOctaveHint">Sets A–K keyboard range (Piano, Training, Compose)</p>
+          <div class="control-group control-group-wide">
+            <label><span data-i18n="label.tempo">Tempo:</span> <strong id="compTempoVal">100</strong></label>
+            <input type="range" id="compTempo" min="40" max="200" value="100" class="bpm-slider">
+          </div>
+        </div>
+      </details>
+
+      <details class="composer-settings-group settings-composer-only" open>
+        <summary data-i18n="compose.settingsInput">Compose input</summary>
+        <div class="sheetmusic-controls composer-compact composer-settings-controls">
+          <div class="control-group">
+            <label data-i18n="label.clef">Clef:</label>
+            <select id="compClef">
+              <option value="treble" data-i18n="clef.treble">Treble</option>
+              <option value="bass" data-i18n="clef.bass">Bass</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.timeSigShort">Time Sig:</label>
+            <select id="compTimeSig">
+              <option value="4/4">4 / 4</option>
+              <option value="3/4">3 / 4</option>
+              <option value="2/4">2 / 4</option>
+              <option value="6/8">6 / 8</option>
+              <option value="5/4">5 / 4</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.length">Length:</label>
+            <select id="compDuration">
+              <option value="1" data-i18n="dur.whole">Whole</option>
+              <option value="2" data-i18n="dur.half">Half</option>
+              <option value="4" selected data-i18n="dur.quarter">Quarter</option>
+              <option value="8" data-i18n="dur.eighth">Eighth</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.accidental">Accidental:</label>
+            <select id="compAccidental">
+              <option value="0">♮</option>
+              <option value="1">♯</option>
+              <option value="-1">♭</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.tapTiming">Tap timing:</label>
+            <button class="toggle-btn comp-toggle active" id="compTapToggle">On</button>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.detected">Detected:</label>
+            <span id="compDetectedTime" class="comp-detected">—</span>
+          </div>
+          <div class="control-group">
+            <label data-i18n="label.chordStack">Chord stack:</label>
+            <button class="toggle-btn comp-toggle" id="compChordToggle">Off</button>
+          </div>
+          <div class="control-group comp-strum-wrap" id="compStrumWrap" hidden>
+            <label data-i18n="compose.strumPattern">Strum pattern:</label>
+            <select id="compStrumPattern"></select>
+          </div>
+          <p class="scale-description comp-strum-hint" id="compStrumHint" data-i18n="compose.strumHint" hidden></p>
+        </div>
+      </details>
+
+      <details class="composer-settings-group settings-composer-only" open>
+        <summary data-i18n="compose.settingsAuto">Auto-fill</summary>
+        <div class="composer-settings-block">
+          <label class="comp-inline-label"><span data-i18n="label.fromTrack">From track:</span>
+            <select id="compSourceTrack"></select>
+          </label>
+          <div class="composer-settings-btns">
+            <button class="play-btn" id="compAutoNotes" data-i18n="compose.autoNotes">🎵 Auto Notes</button>
+            <button class="play-btn" id="compAutoChords" data-i18n="compose.autoChords">🎶 Auto Chords</button>
+            <button class="play-btn" id="compAutoDrums" data-i18n="compose.autoDrums">🥁 Auto Drums</button>
+          </div>
+        </div>
+      </details>
+
+      <details class="composer-settings-group" open>
+        <summary data-i18n="compose.mixerTitle">🎚 Mixer &amp; Effects</summary>
+        <div class="composer-mixer composer-compact">
+          <p class="scale-description composer-mixer-hint" data-i18n="compose.mixerHintGlobal">Effects and EQ apply to all tabs — Piano, Guitar, Training, Compose, etc.</p>
+          <div class="composer-fx-grid">
+            <label class="fx-slider"><span data-i18n="fx.delay">Delay</span> <strong id="compFxDelayVal">0</strong>
+              <input type="range" id="compFxDelay" min="0" max="100" value="0" class="bpm-slider">
+            </label>
+            <label class="fx-slider"><span data-i18n="fx.reverb">Reverb</span> <strong id="compFxReverbVal">20</strong>
+              <input type="range" id="compFxReverb" min="0" max="100" value="20" class="bpm-slider">
+            </label>
+            <label class="fx-slider"><span data-i18n="fx.environment">Environment</span> <strong id="compFxEnvironmentVal">25</strong>
+              <input type="range" id="compFxEnvironment" min="0" max="100" value="25" class="bpm-slider">
+            </label>
+            <label class="fx-slider"><span data-i18n="fx.distortion">Distortion</span> <strong id="compFxDistortionVal">0</strong>
+              <input type="range" id="compFxDistortion" min="0" max="100" value="0" class="bpm-slider">
+            </label>
+            <label class="fx-slider"><span data-i18n="fx.tremolo">Tremolo</span> <strong id="compFxTremoloVal">0</strong>
+              <input type="range" id="compFxTremolo" min="0" max="100" value="0" class="bpm-slider">
+            </label>
+          </div>
+          <div class="track-eq-panel" id="compTrackEq">
+            <h4 class="track-eq-title" data-i18n="compose.eqGlobal">Output EQ</h4>
+            <div class="track-eq-grid">
+              <label class="fx-slider"><span data-i18n="eq.low">Low</span> <strong id="compEqLowVal">0</strong>
+                <input type="range" id="compEqLow" min="0" max="100" value="50" class="bpm-slider">
+              </label>
+              <label class="fx-slider"><span data-i18n="eq.mid">Mid</span> <strong id="compEqMidVal">0</strong>
+                <input type="range" id="compEqMid" min="0" max="100" value="50" class="bpm-slider">
+              </label>
+              <label class="fx-slider"><span data-i18n="eq.high">High</span> <strong id="compEqHighVal">0</strong>
+                <input type="range" id="compEqHigh" min="0" max="100" value="50" class="bpm-slider">
+              </label>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="composer-settings-group settings-composer-only" open>
+        <summary data-i18n="label.examples">Example Songs:</summary>
+        <div class="composer-settings-block">
+          <div class="composer-save composer-save-stack">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <select id="compExamplesFilter" class="comp-name-input" style="flex: 1;" aria-label="Filter by category">
+                <option value="all" data-i18n="filter.all">All Categories</option>
+                <option value="Classical" data-i18n="filter.classical">Classical</option>
+                <option value="Major / Minor" data-i18n="filter.majorMinor">Major / Minor</option>
+                <option value="Modes" data-i18n="filter.modes">Modes</option>
+                <option value="Pentatonic / Blues" data-i18n="filter.pentatonic">Pentatonic / Blues</option>
+                <option value="Turkish Makams" data-i18n="filter.turkish">Turkish Makams</option>
+                <option value="Azerbaijani" data-i18n="filter.azerbaijani">Azerbaijani</option>
+              </select>
+              <select id="compExamplesSort" class="comp-name-input" style="flex: 1;" aria-label="Sort order">
+                <option value="group-title" data-i18n="sort.groupTitle">Group, then Title</option>
+                <option value="title" data-i18n="sort.title">Title (A-Z)</option>
+              </select>
+            </div>
+            <select id="compExamples" style="width: 100%; margin-bottom: 0.5rem;"></select>
+            <button class="play-btn" id="compLoadExample" data-i18n="compose.loadExample" style="width: 100%;">🎵 Load Example</button>
+          </div>
+        </div>
+      </details>
+
+      <details class="composer-settings-group settings-composer-only" open>
+        <summary data-i18n="compose.settingsSongs">Songs</summary>
+        <div class="composer-settings-block">
+          <div class="composer-save composer-save-stack">
+            <input type="text" id="compName" data-i18n-placeholder="compose.placeholder" placeholder="Song name" class="comp-name-input">
+            <button class="play-btn" id="compSave" data-i18n="compose.save">💾 Save</button>
+            <select id="compLoadList"></select>
+            <button class="play-btn" id="compLoad" data-i18n="compose.load">📂 Load</button>
+            <button class="reset-btn" id="compDelete" data-i18n="compose.delete">Delete</button>
+            <button class="play-btn" id="compExport" data-i18n="compose.export">⬇ Export</button>
+            <label class="play-btn comp-import-label"><span data-i18n="compose.import">⬆ Import</span>
+              <input type="file" id="compImport" accept="application/json" hidden>
+            </label>
+          </div>
+        </div>
+      </details>
+    </div>
+  </aside>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/globalSettings.js"></script>
+  <script src="js/midi.js"></script>
+  <script src="js/piano.js"></script>
+  <script src="js/guitar.js"></script>
+  <script src="js/guitarchords.js"></script>
+  <script src="js/songs-bundle.js"></script>
+  <script src="js/songs.js"></script>
+  <script src="js/scales.js"></script>
+  <script src="js/chords.js"></script>
+  <script src="js/sheetmusic.js"></script>
+  <script src="js/composer.js"></script>
+  <script src="js/eartraining.js"></script>
+  <script src="js/metronome.js"></script>
+  <script src="js/tuner.js"></script>
+  <script src="js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+{
+    "title":  "Major pentatonic — pop-soul hook study",
+    "group":  "Pentatonic / Blues",
+    "scale":  "major-pentatonic",
+    "root":  "C",
+    "bpm":  112,
+    "clef":  "treble",
+    "timeSig":  {
+                    "num":  4,
+                    "den":  4
+                },
+    "tracks":  [
+                   {
+                       "instrument":  "piano",
+                       "notes":  [
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "E",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "A",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "E",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  2,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "E",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "A",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "E",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  2,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "E",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "A",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "E",
+                                         "octave":  4,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  4,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  5,
+                                         "value":  2,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "rest":  true,
+                                         "value":  2
+                                     },
+                                     {
+                                         "rest":  true,
+                                         "value":  4
+                                     }
+                                 ]
+                   },
+                   {
+                       "instrument":  "bass",
+                       "notes":  [
+                                     {
+                                         "letter":  "C",
+                                         "octave":  3,
+                                         "value":  1,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "A",
+                                         "octave":  2,
+                                         "value":  1,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  3,
+                                         "value":  1,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "G",
+                                         "octave":  2,
+                                         "value":  1,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "A",
+                                         "octave":  2,
+                                         "value":  1,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "C",
+                                         "octave":  3,
+                                         "value":  1,
+                                         "acc":  0
+                                     },
+                                     {
+                                         "letter":  "A",
+                                         "octave":  2,
+                                         "value":  1,
+                                         "acc":  0
+                                     }
+                                 ]
+                   }
+               ]
+}

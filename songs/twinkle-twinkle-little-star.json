@@ -1,0 +1,77 @@
+{
+  "title": "Twinkle Twinkle Little Star",
+  "group": "Classical",
+  "scale": "major",
+  "root": "C",
+  "bpm": 110,
+  "clef": "treble",
+  "timeSig": {
+    "num": 4,
+    "den": 4
+  },
+  "tracks": [
+    {
+      "instrument": "piano",
+      "notes": [
+        { "letter": "C", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 2, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 4, "value": 2, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 4, "value": 2, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 4, "value": 2, "acc": 0 },
+        { "letter": "C", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "A", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "G", "octave": 4, "value": 2, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "F", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "E", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "D", "octave": 4, "value": 4, "acc": 0 },
+        { "letter": "C", "octave": 4, "value": 2, "acc": 0 }
+      ]
+    },
+    {
+      "instrument": "bass",
+      "notes": [
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "F", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 2, "acc": 0 },
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "F", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "G", "octave": 2, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 1, "acc": 0 },
+        { "letter": "C", "octave": 3, "value": 2, "acc": 0 }
+      ]
+    }
+  ]
+}
